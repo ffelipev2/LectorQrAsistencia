@@ -32,22 +32,17 @@ function response_1() {
         //document.getElementById("barcode").innerHTML = this.responseText;
         var aux = this.responseText;
         if (aux == "1") {
-            Swal.fire('Registro de Entrada', 'Has clic en aceptar', 'success');
-            var x = document.getElementById("myDIV");
-            x.style.display = "none";
-            //alert("si"); 
-        } else if (aux == "6") {
-            Swal.fire('Se ha registrado tu entrada', 'Has clic en aceptar', 'success');
-            var x = document.getElementById("myDIV");
-            x.style.display = "none";
-            //alert("si"); 
-        } else if (aux == "7") {
             Swal.fire('Registro de Entrada Insertado', 'Has clic en aceptar', 'success');
             var x = document.getElementById("myDIV");
             x.style.display = "none";
             //alert("si"); 
-        } else if (aux == "11") {
-            Swal.fire({icon: 'error', title: 'Oops...', text: '¡No existe el registro!'});
+        } else if (aux == "2") {
+            Swal.fire('Debes marcar la Salida', 'Has clic en aceptar', 'success');
+            var x = document.getElementById("myDIV");
+            x.style.display = "none";
+            //alert("si"); 
+        } else if (aux == "3") {
+            Swal.fire({icon: 'error', title: 'Oops...', text: 'Usuario no registrado'});
             var x = document.getElementById("myDIV");
             x.style.display = "none";
             //alert("si"); 
@@ -89,12 +84,16 @@ function response_2() {
     if (connection.readyState == 4) {
         //document.getElementById("barcode").innerHTML = this.responseText;
         var aux = this.responseText;
-        if (aux == "6") {
+        if (aux == "1") {
             Swal.fire('Se ha registrado tu salida', 'Has clic en aceptar', 'success');
             //alert("si"); 
-        } else if (aux == "11") {
-            Swal.fire({icon: 'error', title: 'Oops...', text: '¡No existe el registro!'});
+        } else if (aux == "2") {
+            Swal.fire({icon: 'error', title: 'Oops...', text: 'Debes marcar una Entrada'});
             //alert("si"); 
+        } else if (aux == "3") {
+            Swal.fire({icon: 'error', title: 'Oops...', text: '¡No existe el registro!'});
+            var x = document.getElementById("myDIV");
+            x.style.display = "none";
         } else {
             //alert("no");
             Swal.fire({icon: 'error', title: 'Oops...', text: 'Oh no! ocurrio un Error'});
