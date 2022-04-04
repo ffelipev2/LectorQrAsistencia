@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Asistencia Make It</title>
@@ -47,11 +42,12 @@ and open the template in the editor.
                 <button type="button" onclick="ingresoHabilitar()" class="btn btn-primary btn-lg btn-block" >Ingreso</button>
                 <div id="myDIV" style="display: none" class="mx-auto">
                     <h2> Selecciona el espacio a utilizar</h2>
-                    <select class="form-select" aria-label="Default select example" id="espacio">
+                    <select class="form-select" aria-label="Default select example" id="espacio" required>
                         <option  disabled="disabled" selected>Selecciona</option>
                         <option value="Cowork">Cowork</option>
                         <option value="Freework">Freework</option>
                         <option value="3D printing">3D printing</option>
+                        <option value="Meeting space">Meeting space</option>
                     </select>
                     </br>
                     <div class="col text-center">
@@ -62,7 +58,7 @@ and open the template in the editor.
                 <button type="button" onclick="registroHabilitar()" class="btn btn-primary btn-lg btn-block">Registro</button>
                 <div id="myDIV2" style="display: none" class="mx-auto">
                     <h2> Completa con tus datos</h2>
-                    <form action="resource/funciones.php" method="post">
+                    <form action="index.php" method="post">
                         <label for="exampleFormControlInput1" class="form-label">Rut</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="rut" required oninput="checkRut(this)" name="rut">
                         <label for="exampleFormControlInput1" class="form-label" >Nombre</label>
@@ -77,5 +73,35 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
+        <div id="barcode">
+
+        </div>
     </body>
 </html>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "registromakeitQR";
+
+if (isset($_POST['registro'])) { // salida
+    $rut = $_POST['rut'];
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    //echo $rut;
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "INSERT INTO usuarios (rut, nombre, apellido) VALUES ('$rut', '$nombre', '$apellido')";
+        // use exec() because no results are returned
+        if ($conn->exec($sql)) {
+            echo "<script> Swal.fire('Registro completo', 'Has clic en aceptar', 'success') </script>";
+        }
+    } catch (PDOException $e) {
+        //echo $sql . "<br>" . $e->getMessage();
+        echo "<script> Swal.fire({icon: 'error', title: 'Oops...', text: 'Oh no! ocurrio un Error'}) </script>";
+    }
+    $conn = null;
+}
+?>

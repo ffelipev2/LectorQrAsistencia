@@ -18,10 +18,12 @@ function marcarEntrada() {
             } else if (window.ActiveXObject) {
                 connection = new ActiveXObject("Microsoft.XMLHTTP");
             }
+            var param3 = document.getElementById('espacio');
+            var param3 = param3.options[param3.selectedIndex].value;
             connection.onreadystatechange = response_1;
             connection.open('POST', 'resource/funciones.php');
             connection.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            connection.send("param1=" + arrayDeCadenas[5]);
+            connection.send("param3=" + param3 + "&param4=" + arrayDeCadenas[5]);
         }
     });
 }
@@ -30,11 +32,29 @@ function response_1() {
         //document.getElementById("barcode").innerHTML = this.responseText;
         var aux = this.responseText;
         if (aux == "1") {
-            Swal.fire('Good job!', 'You clicked the button!', 'success');
-        }else{
-            Swal.fire('Bad job!', 'You clicked the button!', 'success');
+            Swal.fire('Registro de Entrada', 'Has clic en aceptar', 'success');
+            var x = document.getElementById("myDIV");
+            x.style.display = "none";
+            //alert("si"); 
+        } else if (aux == "6") {
+            Swal.fire('Se ha registrado tu entrada', 'Has clic en aceptar', 'success');
+            var x = document.getElementById("myDIV");
+            x.style.display = "none";
+            //alert("si"); 
+        } else if (aux == "7") {
+            Swal.fire('Registro de Entrada Insertado', 'Has clic en aceptar', 'success');
+            var x = document.getElementById("myDIV");
+            x.style.display = "none";
+            //alert("si"); 
+        } else if (aux == "11") {
+            Swal.fire({icon: 'error', title: 'Oops...', text: '¡No existe el registro!'});
+            var x = document.getElementById("myDIV");
+            x.style.display = "none";
+            //alert("si"); 
+        } else {
+            //alert("no");
+            Swal.fire({icon: 'error', title: 'Oops...', text: 'Oh no! ocurrio un Error'});
         }
-
     }
 }
 
@@ -67,6 +87,17 @@ function marcarSalida() {
 }
 function response_2() {
     if (connection.readyState == 4) {
-        document.getElementById("barcode").innerHTML = this.responseText;
+        //document.getElementById("barcode").innerHTML = this.responseText;
+        var aux = this.responseText;
+        if (aux == "6") {
+            Swal.fire('Se ha registrado tu salida', 'Has clic en aceptar', 'success');
+            //alert("si"); 
+        } else if (aux == "11") {
+            Swal.fire({icon: 'error', title: 'Oops...', text: '¡No existe el registro!'});
+            //alert("si"); 
+        } else {
+            //alert("no");
+            Swal.fire({icon: 'error', title: 'Oops...', text: 'Oh no! ocurrio un Error'});
+        }
     }
 }
