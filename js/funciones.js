@@ -37,7 +37,7 @@ function response_1() {
             x.style.display = "none";
             //alert("si"); 
         } else if (aux == "2") {
-            Swal.fire('Debes marcar la Salida', 'Has clic en aceptar', 'success');
+            Swal.fire({icon: 'warning', title: 'Atención', text: 'Debes marcar la Salida'});
             var x = document.getElementById("myDIV");
             x.style.display = "none";
             //alert("si"); 
@@ -88,7 +88,7 @@ function response_2() {
             Swal.fire('Se ha registrado tu salida', 'Has clic en aceptar', 'success');
             //alert("si"); 
         } else if (aux == "2") {
-            Swal.fire({icon: 'error', title: 'Oops...', text: 'Debes marcar una Entrada'});
+            Swal.fire({icon: 'warning', title: 'Atención', text: 'Debes marcar la Entrada'});
             //alert("si"); 
         } else if (aux == "3") {
             Swal.fire({icon: 'error', title: 'Oops...', text: '¡No existe el registro!'});

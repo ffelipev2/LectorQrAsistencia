@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2022 a las 05:38:06
+-- Tiempo de generación: 05-04-2022 a las 01:48:36
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.12
 
@@ -28,11 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `datos` (
+  `id` int(255) NOT NULL,
   `rut` varchar(255) NOT NULL,
   `espacioUtilizado` varchar(50) NOT NULL,
   `horaEntrada` varchar(255) NOT NULL,
   `horaSalida` varchar(50) NOT NULL,
-  `fecha` varchar(50) NOT NULL
+  `fecha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -55,13 +56,23 @@ CREATE TABLE `usuarios` (
 -- Indices de la tabla `datos`
 --
 ALTER TABLE `datos`
-  ADD PRIMARY KEY (`fecha`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`rut`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `datos`
+--
+ALTER TABLE `datos`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
